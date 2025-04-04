@@ -43,14 +43,14 @@
                                                             <label class="fs-6 fw-semibold mb-2 required">{{ $item->question }}</label>
                                                             <div class="fs-6 form-control "style="display: flex !important">
                                                                 <div class="form-check col-lg-3">
-                                                                    <input class="form-check-input" type="radio" value="yes" id="flexCheckDefault{{$item->id}}" name="answer___{{$item->id}}">
+                                                                    <input class="form-check-input" type="radio" value="yes" id="flexCheckDefault{{$item->id}}" name="answer___{{$item->id}}" checked>
                                                                     <label class="form-check-label" for="flexCheckDefault{{$item->id}}">
                                                                         Yes
                                                                     </label>
                                                                 </div>
                                                 
                                                                 <div class="form-check col-lg-3">
-                                                                    <input class="form-check-input" type="radio" value="no" id="flexCheckChecked{{$item->id}}" name="answer___{{$item->id}}"  checked>
+                                                                    <input class="form-check-input" type="radio" value="no" id="flexCheckChecked{{$item->id}}" name="answer___{{$item->id}}"  >
                                                                     <label class="form-check-label" for="flexCheckChecked{{$item->id}}" >
                                                                         No
                                                                     </label>
