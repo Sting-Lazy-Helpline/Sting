@@ -3,7 +3,7 @@
 
 <head>
     <base href="" />
-    <title>Do It Visa - Sign In</title>
+    <title>Sting - Sign In</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="{{ asset('theme/assets/media/logos/logom3.jpg')}}" />

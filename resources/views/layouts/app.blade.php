@@ -4,7 +4,7 @@
 <!--begin::Head-->
 
 <head>
-    <title>Do It Visa - Web Application</title>
+    <title>Sting - Web Application</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="_token" content="{{ csrf_token() }}">
