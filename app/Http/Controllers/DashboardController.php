@@ -17,4 +17,7 @@ class DashboardController extends Controller
             // return redirect()->route('my-application');
 
     }
+    public function liveAgentReport() {
+        return view('live_agent_report');
+    }
 }
