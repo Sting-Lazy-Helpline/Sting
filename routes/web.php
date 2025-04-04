@@ -23,9 +23,9 @@ Route::get('/', function () {
 //     return view('template/template_propect_accepted',compact('data'));
 // })->name('aaaaaaaaaaaa');
 
+Route::get('live-agent-report',  [DashboardController::class, 'liveAgentReport'])->name('live-agent-report');
 Route::middleware('auth')->group(function () {
     Route::get('dashboard',  [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('live-agent-report',  [DashboardController::class, 'liveAgentReport'])->name('live-agent-report');
 
     Route::resource('user', UserController::class);
 
