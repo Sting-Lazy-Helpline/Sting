@@ -135,18 +135,19 @@ class SettingsController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $request->validate($request, [
+        $request->validate([
             'old_password' => 'required',
-            'password' => 'confirmed|min:8|different:old_password',
+            'password' => 'required|password_confirmation|min:8|different:old_password',
         ]);
+
         if (Hash::check($request->old_password, $user->password)) {
-            $user->fill([
+            $user->update([
                 'password' => Hash::make($request->password),
-            ])->save();
-        
+            ]);
+
             return $this->apiResponse->success('Password successfully updated');
         } else {
-            return $this->apiResponse->error('Old password does not match', 200);
+            return $this->apiResponse->error('Old password does not match', 422);
         }
     }
 
