@@ -135,11 +135,11 @@ class SettingsController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $this->validate($request, [
+        $request->validate($request, [
             'old_password' => 'required',
             'password' => 'confirmed|min:8|different:old_password',
         ]);
-        if (Hash::check($request->old_password, $user->password)) {
+        if (Hash::check(Hash::make($request->old_password), $user->password)) {
             $user->fill([
                 'password' => Hash::make($request->password),
             ])->save();
