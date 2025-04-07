@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // URL::forceScheme('https');
+        URL::forceScheme('https');
 
         DB::listen(function ($query){
             logger(Str::replaceArray('?', $query->bindings, $query->sql));
