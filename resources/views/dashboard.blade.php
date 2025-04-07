@@ -11,7 +11,9 @@
                         </li>
                     </ul>
                 </div>
-                 
+                <div class="d-flex align-items-center position-relative my-1">
+                    <input class="form-control form-control-sm form-control-solid w-min-250px ps-10 search" placeholder="Pick date rage" id="kt_daterangepicker_1"/>
+                </div>
             </div>
         </div>
         <!--end::Toolbar-->
@@ -100,6 +102,16 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    $('#kt_daterangepicker_1').daterangepicker();
+
+    $('#kt_daterangepicker_1').on('apply.daterangepicker', function(ev, picker) {
+        startDate = picker.startDate.format('YYYY-MM-DD');
+        endDate = picker.endDate.format('YYYY-MM-DD');
+        $('#kt_datatable_example_1').DataTable().ajax.reload();
+    });
+
+</script>
 
 {{-- <x-app-layout>
     <x-slot name="header">

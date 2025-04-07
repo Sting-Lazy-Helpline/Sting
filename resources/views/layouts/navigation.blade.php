@@ -29,7 +29,21 @@
                                 <span class="menu-heading fw-bold text-uppercase fs-7">{{ Auth::user()->roles->first()->display_name }}</span>
                             </div>
                         </div>
-                        {{-- @if(Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'staff') --}}
+                        @if(Auth::user()->user_type == 'client')
+                        <div class="menu-item">
+                            <a class="menu-link {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-message-question fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </div>
+                        @endif
+                        @if(Auth::user()->user_type == 'agent' )
                         <div class="menu-item">
                             <a class="menu-link {{ Route::currentRouteName() == 'survey.create' ? 'active' : '' }}" href="{{ route('survey.create') }}">
                                 <span class="menu-icon">
@@ -42,6 +56,7 @@
                                 <span class="menu-title">Add Survey</span>
                             </a>
                         </div>
+                        @endif
                         <div class="menu-item">
                             <a class="menu-link {{ Route::currentRouteName() == 'survey.index' ? 'active' : '' }}" href="{{ route('survey.index') }}">
                                 <span class="menu-icon">

@@ -14,6 +14,13 @@ function openModalBox(modalId, url, title, val = "") {
     });
 }
 
+function renderData(data, type, row) {
+    if (data === null || data === undefined) {
+        return ''; // Return an empty string for null or undefined values
+    }
+    return data; // Return the actual data
+}
+
 function addUpdateData(buttonId,formId,modalId,reload,redirect = '') {
     var formId=formId;
     var buttonId=buttonId;

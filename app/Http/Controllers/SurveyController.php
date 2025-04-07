@@ -6,6 +6,7 @@ use App\Interface\ApiResponseInterface;
 use App\Models\Question;
 use App\Models\Answers;
 use App\Models\Survey;
+use Yajra\DataTables\Facades\DataTables;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +22,21 @@ class SurveyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $survey=Survey::orderBy('id', 'desc')->get();
-        return view('survey/survey_index',compact('survey'));
+        if ($request->ajax()) {
+            $survey=Survey::orderBy('id', 'desc');
+            if ($request->filled('start_date') && $request->filled('end_date')) {
+                $survey->whereBetween('created_at', [
+                    $request->start_date . ' 00:00:00',
+                    $request->end_date . ' 23:59:59'
+                ]);
+            }
+            return DataTables::of($survey)
+                ->addIndexColumn()
+                ->make();
+        }
+        return view('survey/survey_index');
     }
     
     /**
