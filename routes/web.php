@@ -11,17 +11,18 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Route::get('/aaaaaaaaaaaa', function () {
-//     // Auth::login($user);
-//     // $user->addRole(strtolower($request->method));
-//     // $data=array();->middleware(['auth', 'verified'])
-//     // $data['name']=$request->name;
-//     // sendEmail($request->email,"Welcome email on Registration $request->name",'template/template_register',$data);
-//     $data['name']='aaaaaaaaaaa';
-//     $data['email']='aaaaaaaaaaa';
-//     $data['password']='aaaaaaaaaaa';
-//     return view('template/template_propect_accepted',compact('data'));
-// })->name('aaaaaaaaaaaa');
+Route::get('/aaaaaaaaaaaa', function () {
+    // Auth::login($user);
+    // $user->addRole(strtolower($request->method));
+    // $data=array();->middleware(['auth', 'verified'])
+    // $data['name']=$request->name;
+    // sendEmail($request->email,"Welcome email on Registration $request->name",'template/template_register',$data);
+    // $data['name']='aaaaaaaaaaa';
+    // $data['email']='aaaaaaaaaaa';
+    // $data['password']='aaaaaaaaaaa';
+    // return view('template/template_propect_accepted',compact('data'));
+    return view('dashboard');
+})->name('aaaaaaaaaaaa');
 
 Route::get('live-agent-report',  [DashboardController::class, 'liveAgentReport'])->name('live-agent-report');
 Route::middleware('auth')->group(function () {
