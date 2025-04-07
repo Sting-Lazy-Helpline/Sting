@@ -6,7 +6,7 @@
             <!--begin::Logo image-->
             <a href="{{ route('dashboard') }}">
                 <img alt="Logo" src="{{ asset('theme/assets/media/logos/logom3.jpg')}}" class="h-50px app-sidebar-logo-default" />
-                <img alt="Logo" src="{{ asset('theme/assets/media/logos/favicon.png')}}" class="h-25px app-sidebar-logo-minimize" />
+                <img alt="Logo" src="{{ asset('theme/assets/media/logos/logom3.jpg')}}" class="h-25px app-sidebar-logo-minimize" />
             </a>
             <!--end::Logo image-->
             <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary h-30px w-30px position-absolute top-50 start-100 translate-middle rotate" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
