@@ -52,7 +52,7 @@
                     <div class="card-body py-15 py-lg-20">
                         <div class="mb-15">
                             <a href="#" class="">
-                                <img alt="Logo" src="{{ asset('theme/assets/media/logos/logolong.jpg')}}" class="h-40px h-lg-60px" />
+                                <img alt="Logo" src="{{ asset('theme/assets/media/logos/logolong.jpg')}}" class="h-40px h-lg-100px" />
                             </a>
                         </div>
                         {{ $slot }}
