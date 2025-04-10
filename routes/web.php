@@ -27,7 +27,8 @@ Route::get('/aaaaaaaaaaaa', function () {
 Route::get('live-agent-report',  [DashboardController::class, 'liveAgentReport'])->name('live-agent-report');
 Route::middleware('auth')->group(function () {
     Route::get('dashboard',  [DashboardController::class, 'index'])->name('dashboard');
-
+    Route::Post('dashboard-data',  [DashboardController::class, 'dashboardData'])->name('dashboard-data');
+    
     Route::resource('user', UserController::class);
 
     Route::resource('survey', SurveyController::class);

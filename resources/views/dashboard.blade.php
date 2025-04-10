@@ -33,7 +33,7 @@
                                     <span class="path4"></span>
                                     <span class="path5"></span>
                                 </i>
-                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">655</div>
+                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5" id="total_call">0</div>
                                 <div class="fw-semibold text-gray-600">Total Calls</div>
                             </div>
                         </a>
@@ -46,7 +46,7 @@
                                     <span class="path2"></span>
                                     <span class="path3"></span>
                                 </i>
-                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">1526</div>
+                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5" id="answer_call">0</div>
                                 <div class="fw-semibold text-gray-600">Answer Calls</div>
                             </div>
                         </a>
@@ -58,7 +58,7 @@
                                     <span class="path1"></span>
                                     <span class="path2"></span>
                                 </i>
-                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">152</div>
+                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5" id="no_answer_call">0</div>
                                 <div class="fw-semibold text-gray-600">No Answer Calls</div>
                             </div>
                         </a>
@@ -75,8 +75,8 @@
                                     <span class="path6"></span>
                                     <span class="path7"></span>
                                 </i>
-                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">3456</div>
-                                <div class="fw-semibold text-gray-600">Duration</div>
+                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5" id="talk_time">0</div>
+                                <div class="fw-semibold text-gray-600">Talk Time</div>
                             </div>
                         </a>
                     </div>
@@ -92,8 +92,8 @@
                                     <span class="path6"></span>
                                     <span class="path7"></span>
                                 </i>
-                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">3456</div>
-                                <div class="fw-semibold text-gray-600">Talk Time</div>
+                                <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5"  id="unique_callers">0</div>
+                                <div class="fw-semibold text-gray-600">Unique Callers</div>
                             </div>
                         </a>
                     </div>
@@ -106,11 +106,38 @@
     $('#kt_daterangepicker_1').daterangepicker();
 
     $('#kt_daterangepicker_1').on('apply.daterangepicker', function(ev, picker) {
-        startDate = picker.startDate.format('YYYY-MM-DD');
-        endDate = picker.endDate.format('YYYY-MM-DD');
-        $('#kt_datatable_example_1').DataTable().ajax.reload();
-    });
+        const startDate = picker.startDate.format('YYYY-MM-DD');
+        const endDate = picker.endDate.format('YYYY-MM-DD');
 
+        const formData = new FormData();
+        formData.append('start_date', startDate);
+        formData.append('end_date', endDate);
+
+        dashboardData(formData);
+    });
+    function dashboardData(formData)
+    {
+        $.ajax({
+            url: '{{ route('dashboard-data') }}',
+            method: 'POST',
+            data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(result) {
+                $('#total_call').text(result.callDetails?.[0]?.TodayCalls ?? 0);
+                $('#answer_call').text(result.answerAndNoAnswer[0]?.Counts ?? 0);
+                $('#no_answer_call').text(result.answerAndNoAnswer[1]?.Counts ?? 0);
+                $('#talk_time').text(result.callDetails[0]?.TalkTimeMinutes ?? 0);
+                $('#unique_callers').text(result.callDetails[0]?.UniqueCallers ?? 0);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    }
+
+    dashboardData('');
 </script>
 
 {{-- <x-app-layout>
