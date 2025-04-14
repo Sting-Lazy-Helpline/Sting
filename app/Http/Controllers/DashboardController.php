@@ -21,8 +21,8 @@ class DashboardController extends Controller
     public function dashboardData(Request $request)
     {
         if ($request->ajax()) {
-            $startDatea = date('Y-m-01'); // First day of current month
-            $endDatea = date('Y-m-t');    // Last day of current month
+            $startDatea = date('Y-m-d'); // First day of current month
+            $endDatea = date('Y-m-d');    // Last day of current month
             $query="AND DATE(calldate) BETWEEN '$startDatea' AND '$endDatea'";
             $startDate = $request->start_date;
             $endDate = $request->end_date;
