@@ -31,7 +31,7 @@ class DashboardController extends Controller
                 $query="AND DATE(calldate) BETWEEN '$startDate' AND '$endDate'";
             }
             $answerAndNoAnswer = DB::connection('call')->select("SELECT DATE_FORMAT(calldate,'%Y-%m-%d') AS DATE, disposition AS CallStatus, COUNT(DISTINCT(src)) AS Counts FROM as_cdr 
-                WHERE vpbx_id = '717' AND call_type = 'inbound' $query GROUP BY disposition");
+                WHERE vpbx_id = '717' AND call_type = 'inbound' AND lastapp = 'Dial' $query GROUP BY disposition");
 
             $callDetails = DB::connection('call')->select("SELECT DATE_FORMAT(calldate,'%Y-%m-%d') AS DATE, COUNT(src) AS TodayCalls, COUNT(DISTINCT(src)) AS UniqueCallers, SUM(CEIL(billsec/60)) AS TalkTimeMinutes 
             FROM as_cdr WHERE vpbx_id = '717' AND call_type = 'inbound' $query");
